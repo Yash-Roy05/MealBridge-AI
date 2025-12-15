@@ -1,0 +1,199 @@
+/* App.css - FINAL SHAREMEAL INDIA DASHBOARD */
+
+/* 1. LOCK THE WINDOW (No Main Scrollbar) */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #fffaf0; /* Cream Color */
+  margin: 0;
+  height: 100vh; /* Full screen height */
+  overflow: hidden; /* Lock the main window */
+}
+
+/* 2. HEADER (Tricolor) */
+.navbar {
+  background: linear-gradient(90deg, #FF9933 0%, #FFFFFF 50%, #138808 100%);
+  color: #000080;
+  padding: 10px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  border-bottom: 4px solid #000080;
+  height: 160px; 
+  box-sizing: border-box;
+}
+
+.navbar h1 {
+  margin: 5px 0;
+  font-size: 1.8rem;
+  font-weight: 800;
+  text-shadow: 2px 2px 0px #ffffff;
+}
+
+/* 3. MAIN CONTENT AREA */
+.main-content {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  padding: 20px;
+  height: calc(100vh - 160px); 
+  box-sizing: border-box;
+}
+
+/* --- LEFT COLUMN --- */
+.left-section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 320px;
+  max-height: 100%; 
+  overflow-y: auto; 
+  padding-bottom: 20px; 
+}
+.left-section::-webkit-scrollbar { width: 0px; background: transparent; }
+
+/* A. Donate Form (UPDATED WITH STICKY TITLE) */
+.form-container {
+  background: white;
+  padding: 0 20px 20px 20px; /* Removed top padding so sticky header touches top */
+  border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  border-top: 5px solid #138808; 
+}
+
+/* --- THIS IS THE FIX FOR DONATE TITLE --- */
+.form-container h2 {
+  color: #138808;
+  text-align: center;
+  margin-top: 0;
+  
+  /* STICKY MAGIC */
+  position: sticky;
+  top: 0;
+  background: white; /* Hides the form inputs as they scroll under */
+  padding-top: 20px; /* Add space back here */
+  padding-bottom: 10px;
+  z-index: 10;
+  border-bottom: 2px solid #f0f0f0;
+  margin-bottom: 15px;
+}
+/* ---------------------------------------- */
+
+/* B. NGO List */
+.ngo-container {
+  background: white;
+  padding: 15px;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  border-top: 5px solid #000080; 
+}
+
+.ngo-container h3 {
+  color: #000080;
+  text-align: center;
+  margin-top: 0;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 10px;
+  font-size: 1.2rem;
+}
+
+.ngo-list { list-style: none; padding: 0; margin: 0; }
+.ngo-list li { display: flex; align-items: center; padding: 10px; border-bottom: 1px solid #f0f0f0; }
+.dot { height: 12px; width: 12px; border-radius: 50%; display: inline-block; margin-right: 15px; flex-shrink: 0; }
+.ngo-info { display: flex; flex-direction: column; }
+.ngo-info strong { font-size: 14px; color: #333; }
+.ngo-info small { font-size: 11px; color: #777; }
+
+
+/* --- RIGHT COLUMN: FOOD FEED --- */
+.right-section {
+  width: 450px;
+  height: 100%;
+}
+
+.feed-container {
+  background: white;
+  border-radius: 15px;
+  padding: 0 20px 20px 20px; /* Removed top padding so title touches top */
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  border-top: 5px solid #138808; 
+  height: 100%; 
+  overflow-y: auto; 
+}
+
+.feed-container h2 {
+  color: #138808;
+  text-align: center;
+  margin-top: 0;
+  
+  /* STICKY TITLE */
+  position: sticky; 
+  top: 0;
+  background: white;
+  padding-top: 20px;
+  padding-bottom: 10px;
+  z-index: 10;
+  border-bottom: 2px solid #f0f0f0;
+  margin-bottom: 15px;
+}
+
+.food-card {
+  background: #fffaf0; 
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 12px;
+  border-left: 8px solid #FF9933; 
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.food-card h3 { margin: 0 0 10px 0; color: #333; }
+.food-card p { margin: 5px 0; color: #555; font-size: 14px; }
+
+
+/* --- INPUTS & BUTTONS --- */
+input, select {
+  display: block;
+  width: 90%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 2px solid #eee;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  font-size: 14px;
+}
+input:focus, select:focus { border-color: #138808; outline: none; background-color: white; }
+
+button[type="submit"] {
+  width: 100%;
+  padding: 12px;
+  background-color: #138808;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 16px;
+  margin-top: 10px;
+}
+button[type="submit"]:hover { background-color: #0e6b05; }
+
+.collect-btn {
+  width: 100%;
+  padding: 10px;
+  background-color: #FF9933;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+.collect-btn:hover { background-color: #e68a00; }
+
+.feed-container::-webkit-scrollbar { width: 8px; }
+.feed-container::-webkit-scrollbar-thumb { background-color: #ccc; border-radius: 10px; }
+
+@media (max-width: 800px) {
+  .main-content { flex-wrap: wrap; height: auto; overflow-y: auto; }
+  body { overflow: auto; height: auto; }
+  .navbar { height: auto; }
+}
