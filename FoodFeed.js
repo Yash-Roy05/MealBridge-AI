@@ -1,30 +1,61 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useState } from 'react';
+// import axios from 'axios'; // We don't need axios for this demo version
 
 function FoodFeed() {
-    const [foodList, setFoodList] = useState([]);
+    // --- HACKATHON DEMO DATA (Hardcoded so it ALWAYS shows) ---
+    const [foodList, setFoodList] = useState([
+        {
+            _id: "101",
+            foodName: "Veg Biryani",
+            quantity: "10 Plates",
+            expiry: "4 Hours",
+            location: "Shop 4, Market Road, Surat, Gujarat",
+            donorName: "Raju Dhaba",
+            status: "Available",
+            collector: ""
+        },
+        {
+            _id: "102",
+            foodName: "Roti & Sabzi",
+            quantity: "5 Packets",
+            expiry: "2 Hours",
+            location: "Sector 21, Gandhinagar, Gujarat",
+            donorName: "Anjali Home Kitchen",
+            status: "Available",
+            collector: ""
+        },
+        {
+            _id: "103",
+            foodName: "Leftover Breads",
+            quantity: "2 kg",
+            expiry: "1 Day",
+            location: "Andheri West, Mumbai, Maharashtra",
+            donorName: "City Bakery",
+            status: "Collected",
+            collector: "Robin Hood Army"
+        }
+    ]);
 
-    useEffect(() => {
-        axios.get('http://localhost:3001/all-food')
-            .then(res => setFoodList(res.data.reverse()))
-            .catch(err => console.log(err));
-    }, []);
-
+    // Simulated Collect Function (Just for the Demo)
     const handleCollect = (id) => {
         const collectorName = prompt("Enter your name to collect this food:");
         if (!collectorName) return;
 
-        axios.put(`http://localhost:3001/collect-food/${id}`, { collector: collectorName })
-            .then(() => {
-                alert(`Thank you ${collectorName}! Food collected.`);
-                window.location.reload();
-            })
-            .catch(err => alert("Error connecting to server"));
+        // Update the list locally to show the change immediately
+        const updatedList = foodList.map(item => {
+            if (item._id === id) {
+                return { ...item, status: "Collected", collector: collectorName };
+            }
+            return item;
+        });
+        
+        setFoodList(updatedList);
+        alert(`Thank you ${collectorName}! Food collected.`);
     };
 
     return (
         <div className="feed-container">
-            <h2>🍲 Food Feed</h2>
+            <h2> Available Food </h2>
             <div className="card-grid">
                 {foodList.map((food) => (
                     <div 
@@ -38,22 +69,16 @@ function FoodFeed() {
                     >
                         <h3>{food.foodName}</h3>
                         
-                        {/* --- NEW EXPIRY DISPLAY --- */}
+                        {/* Expiry Display */}
                         <p style={{ color: '#cb202d', fontWeight: 'bold' }}>
                             🕒 Expires in: {food.expiry || "Not Specified"}
                         </p>
-                        {/* -------------------------- */}
                         
                         <p><strong>Quantity:</strong> {food.quantity}</p>
                         <p><strong>Location:</strong> 
-                            <a 
-                                href={`http://maps.google.com/?q=${encodeURIComponent(food.location)}`} 
-                                target="_blank" 
-                                rel="noreferrer"
-                                style={{ color: '#138808', fontWeight: 'bold', marginLeft: '5px' }}
-                            >
+                            <span style={{ color: '#138808', fontWeight: 'bold', marginLeft: '5px' }}>
                                 📍 {food.location}
-                            </a>
+                            </span>
                         </p>
 
                         <p style={{ color: '#000080', fontSize: '15px' }}>
@@ -76,4 +101,4 @@ function FoodFeed() {
     );
 }
 
-export default FoodFeed;    
+export default FoodFeed;
