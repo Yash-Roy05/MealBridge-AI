@@ -1,199 +1,208 @@
-/* App.css - FINAL SHAREMEAL INDIA DASHBOARD */
+/* App.css - FINAL COLOR UPDATE */
 
-/* 1. LOCK THE WINDOW (No Main Scrollbar) */
+/* 1. IMPORT MODERN FONT */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+/* 2. GLOBAL RESET & BASICS */
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #fffaf0; /* Cream Color */
+  font-family: 'Poppins', sans-serif;
+  background: 92e0ff; /* Light Orange to White */
   margin: 0;
-  height: 100vh; /* Full screen height */
-  overflow: hidden; /* Lock the main window */
+  height: 100vh;
+  overflow: hidden;
+  color: #333;
 }
 
-/* 2. HEADER (Tricolor) */
+/* 3. HEADER */
 .navbar {
-  background: linear-gradient(90deg, #FF9933 0%, #FFFFFF 50%, #138808 100%);
-  color: #000080;
-  padding: 10px;
+  background: #e5eaf5;
+  padding: 15px 20px;
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-  border-bottom: 4px solid #000080;
-  height: 160px; 
-  box-sizing: border-box;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+  border-bottom: 3px solid #FF9933;
+  min-height: 160px;
+  gap: 12px;
 }
 
-.navbar h1 {
-  margin: 5px 0;
+.header-logo {
+  width: 90px;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+  background-color: white;
+  padding: 3px;
+  transition: transform 0.3s ease;
+}
+.header-logo:hover { transform: scale(1.05) rotate(-2deg); }
+
+.header-text h1 {
+  margin: 0;
   font-size: 1.8rem;
-  font-weight: 800;
-  text-shadow: 2px 2px 0px #ffffff;
+  font-weight: 700;
+  background: linear-gradient(90deg, #FF9933, #138808);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -0.5px;
 }
 
-/* 3. MAIN CONTENT AREA */
+.header-text p {
+  margin: 2px 0 0 0;
+  font-size: 13px;
+  font-weight: 600;
+  color: #555;
+  letter-spacing: 1px;
+}
+
+/* 4. MAIN LAYOUT */
 .main-content {
   display: flex;
   justify-content: center;
-  gap: 30px;
-  padding: 20px;
-  height: calc(100vh - 160px); 
+  gap: 40px;
+  padding: 30px;
+  height: calc(100vh - 200px);
   box-sizing: border-box;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 /* --- LEFT COLUMN --- */
 .left-section {
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  width: 320px;
-  max-height: 100%; 
-  overflow-y: auto; 
-  padding-bottom: 20px; 
+  width: 380px;
+  overflow-y: auto;
+  padding-bottom: 40px;
+  padding-right: 5px;
 }
-.left-section::-webkit-scrollbar { width: 0px; background: transparent; }
+.left-section::-webkit-scrollbar { width: 0px; }
 
-/* A. Donate Form (UPDATED WITH STICKY TITLE) */
+/* DONATE CARD */
+.donate-cta-card {
+  background: white;
+  padding: 40px 30px;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+.donate-cta-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0;
+  height: 6px; background: linear-gradient(90deg, #138808, #8bc34a);
+}
+.donate-cta-card:hover { transform: translateY(-5px); }
+
+.donate-trigger-btn {
+  background: linear-gradient(45deg, #FF9933, #ff7e00);
+  color: white; font-size: 18px; padding: 16px 40px;
+  border: none; border-radius: 50px; cursor: pointer;
+  box-shadow: 0 10px 20px rgba(255, 153, 51, 0.3);
+  font-weight: 600; transition: all 0.3s ease; width: 100%;
+}
+.donate-trigger-btn:hover { transform: translateY(-2px); }
+
+/* --- FIXED FORM HEADER LAYOUT --- */
 .form-container {
-  background: white;
-  padding: 0 20px 20px 20px; /* Removed top padding so sticky header touches top */
-  border-radius: 15px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-  border-top: 5px solid #138808; 
+  background: white; padding: 25px; border-radius: 20px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+  position: relative; animation: slideUp 0.4s ease-out;
 }
 
-/* --- THIS IS THE FIX FOR DONATE TITLE --- */
+@keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+/* Title Area with padding for Close Button */
 .form-container h2 {
-  color: #138808;
-  text-align: center;
-  margin-top: 0;
-  
-  /* STICKY MAGIC */
-  position: sticky;
-  top: 0;
-  background: white; /* Hides the form inputs as they scroll under */
-  padding-top: 20px; /* Add space back here */
-  padding-bottom: 10px;
-  z-index: 10;
-  border-bottom: 2px solid #f0f0f0;
-  margin-bottom: 15px;
-}
-/* ---------------------------------------- */
-
-/* B. NGO List */
-.ngo-container {
-  background: white;
-  padding: 15px;
-  border-radius: 15px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-  border-top: 5px solid #000080; 
+  color: #138808; text-align: left; margin-top: 0;
+  display: flex; align-items: center; gap: 10px;
+  border-bottom: 2px solid #f0f0f0; padding-bottom: 15px;
+  margin-bottom: 20px; font-size: 1.5rem;
+  padding-right: 40px; /* Space for Close Button */
 }
 
-.ngo-container h3 {
-  color: #000080;
-  text-align: center;
-  margin-top: 0;
-  border-bottom: 2px solid #eee;
-  padding-bottom: 10px;
-  font-size: 1.2rem;
+/* Gemini Badge Style */
+.gemini-badge {
+  font-size: 10px; color: #138808; border: 1px solid #138808;
+  padding: 4px 8px; border-radius: 12px;
+  background-color: rgba(19, 136, 8, 0.05);
+  font-weight: 600; white-space: nowrap; text-transform: uppercase;
 }
 
-.ngo-list { list-style: none; padding: 0; margin: 0; }
-.ngo-list li { display: flex; align-items: center; padding: 10px; border-bottom: 1px solid #f0f0f0; }
-.dot { height: 12px; width: 12px; border-radius: 50%; display: inline-block; margin-right: 15px; flex-shrink: 0; }
-.ngo-info { display: flex; flex-direction: column; }
-.ngo-info strong { font-size: 14px; color: #333; }
-.ngo-info small { font-size: 11px; color: #777; }
-
-
-/* --- RIGHT COLUMN: FOOD FEED --- */
-.right-section {
-  width: 450px;
-  height: 100%;
+/* Close Button - Top Right */
+.close-btn {
+  position: absolute; right: 15px; top: 15px;
+  background: #fff0f0; border: 1px solid #ffcccc;
+  padding: 6px 12px; border-radius: 20px;
+  font-size: 12px; cursor: pointer; z-index: 20;
+  color: #d32f2f; font-weight: 700; transition: all 0.2s;
+  display: flex; align-items: center; gap: 5px;
 }
+.close-btn:hover { background: #ffe0e0; transform: scale(1.05); }
+
+/* --- RIGHT COLUMN --- */
+.right-section { width: 480px; height: 100%; }
 
 .feed-container {
-  background: white;
-  border-radius: 15px;
-  padding: 0 20px 20px 20px; /* Removed top padding so title touches top */
-  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-  border-top: 5px solid #138808; 
-  height: 100%; 
-  overflow-y: auto; 
+  background: white; border-radius: 20px;
+  padding: 0 25px 25px 25px;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+  height: 100%; overflow-y: auto; position: relative;
 }
 
 .feed-container h2 {
-  color: #138808;
-  text-align: center;
-  margin-top: 0;
-  
-  /* STICKY TITLE */
-  position: sticky; 
-  top: 0;
-  background: white;
-  padding-top: 20px;
-  padding-bottom: 10px;
-  z-index: 10;
-  border-bottom: 2px solid #f0f0f0;
-  margin-bottom: 15px;
+  color: #333; text-align: center; margin-top: 0;
+  position: sticky; top: 0;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  padding-top: 25px; padding-bottom: 15px; z-index: 10;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+  margin-bottom: 20px; font-weight: 700;
 }
 
 .food-card {
-  background: #fffaf0; 
-  padding: 15px;
-  margin-bottom: 15px;
-  border-radius: 12px;
-  border-left: 8px solid #FF9933; 
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  background: #ffffff; padding: 20px; margin-bottom: 20px;
+  border-radius: 16px; border: 1px solid #f0f0f0;
+  border-left: 6px solid #FF9933;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
-.food-card h3 { margin: 0 0 10px 0; color: #333; }
-.food-card p { margin: 5px 0; color: #555; font-size: 14px; }
+.food-card:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.08); }
+.food-card h3 { margin: 0 0 8px 0; color: #2c3e50; font-weight: 700; font-size: 1.1rem; }
+.food-card p { margin: 6px 0; color: #666; font-size: 13px; line-height: 1.5; }
 
-
-/* --- INPUTS & BUTTONS --- */
+/* INPUTS & BUTTONS */
 input, select {
-  display: block;
-  width: 90%;
-  padding: 10px;
-  margin: 10px 0;
-  border: 2px solid #eee;
-  border-radius: 8px;
-  background-color: #f9f9f9;
-  font-size: 14px;
+  width: 100%; padding: 12px 15px; margin: 10px 0;
+  border: 2px solid #eee; border-radius: 12px;
+  background-color: #fafafa; font-size: 14px;
+  font-family: 'Poppins', sans-serif; transition: border-color 0.3s ease;
+  box-sizing: border-box;
 }
-input:focus, select:focus { border-color: #138808; outline: none; background-color: white; }
+input:focus, select:focus {
+  border-color: #138808; background-color: white; outline: none;
+  box-shadow: 0 0 0 4px rgba(19, 136, 8, 0.1);
+}
 
 button[type="submit"] {
-  width: 100%;
-  padding: 12px;
-  background-color: #138808;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: bold;
-  font-size: 16px;
-  margin-top: 10px;
+  width: 100%; padding: 14px;
+  background: linear-gradient(45deg, #138808, #0e6b05);
+  color: white; border: none; border-radius: 12px;
+  cursor: pointer; font-weight: 600; font-size: 15px;
+  margin-top: 15px; transition: transform 0.2s;
 }
-button[type="submit"]:hover { background-color: #0e6b05; }
+button[type="submit"]:hover { transform: scale(1.02); }
 
 .collect-btn {
-  width: 100%;
-  padding: 10px;
-  background-color: #FF9933;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: bold;
+  width: 100%; padding: 12px;
+  background: linear-gradient(to right, #FF9933, #FF7722);
+  color: white; border: none; border-radius: 10px;
+  cursor: pointer; font-weight: 600; margin-top: 10px;
+  box-shadow: 0 4px 10px rgba(255, 153, 51, 0.2);
 }
-.collect-btn:hover { background-color: #e68a00; }
 
-.feed-container::-webkit-scrollbar { width: 8px; }
-.feed-container::-webkit-scrollbar-thumb { background-color: #ccc; border-radius: 10px; }
-
-@media (max-width: 800px) {
-  .main-content { flex-wrap: wrap; height: auto; overflow-y: auto; }
-  body { overflow: auto; height: auto; }
-  .navbar { height: auto; }
-}
+.feed-container::-webkit-scrollbar { width: 6px; }
+.feed-container::-webkit-scrollbar-thumb { background-color: #ddd; border-radius: 10px; }
