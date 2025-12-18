@@ -1,28 +1,65 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PostFood from './components/PostFood';
 import FoodFeed from './components/FoodFeed';
 import './App.css';
 
 function App() {
+  // --- STATE TO TRACK IF FORM IS OPEN OR CLOSED ---
+  const [isFormOpen, setIsFormOpen] = useState(false);
+
   return (
     <div className="App">
       <header className="navbar">
-        {/* INDIAN FLAG ADDED HERE */}
+        {/* --- HD STATIC FLAG (Stable) --- */}
         <img 
-          src="https://upload.wikimedia.org/wikipedia/en/4/41/Flag_of_India.svg" 
+          src="https://flagcdn.com/w320/in.png" 
           alt="Indian Flag" 
-          style={{ width: '80px', marginBottom: '10px', boxShadow: '0 0 10px rgba(0,0,0,0.3)' }} 
+          className="header-logo"
         />
-        <h1>♻️ ShareMeal India</h1>
-        <p style={{ margin: '0', fontSize: '14px', fontStyle: 'italic' }}>
-          Made with ❤️ for India
-        </p>
+        
+        <div className="header-text">
+          <h1>♻️ ShareMeal India</h1>
+          <p> Made with ❤️ for India</p>
+        </div>
       </header>
       
       <div className="main-content">
+        
+        {/* --- LEFT SECTION --- */}
         <div className="left-section">
-          <PostFood />
+          
+          {/* 1. THE TOGGLE CARD (Have Leftover Food?) */}
+          {!isFormOpen ? (
+            <div className="donate-cta-card">
+                <h2 style={{color: '#138808', margin:'0 0 10px 0'}}>Have Leftover Food?</h2>
+                <p style={{color: '#555', marginBottom: '20px', fontSize:'14px'}}>
+                  Don't throw it away. Someone is hungry nearby.
+                </p>
+                
+                <button 
+                    onClick={() => setIsFormOpen(true)}
+                    className="donate-trigger-btn"
+                >
+                    ➕ Donate Now
+                </button>
+            </div>
+          ) : (
+            // 2. THE FORM (When Button is Clicked)
+            <div style={{ position: 'relative' }}>
+                {/* Close Button - Positioned via CSS */}
+                <button 
+                    onClick={() => setIsFormOpen(false)}
+                    className="close-btn"
+                >
+                    ✕ Close
+                </button>
+                <PostFood />
+            </div>
+          )}
+          
         </div>
+
+        {/* --- RIGHT SECTION: Food Feed --- */}
         <div className="right-section">
           <FoodFeed />
         </div>
