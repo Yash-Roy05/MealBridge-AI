@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-// import axios from 'axios'; // We don't need axios for this demo version
 
 function FoodFeed() {
-    // --- HACKATHON DEMO DATA (Hardcoded so it ALWAYS shows) ---
+    // --- HACKATHON DEMO DATA ---
     const [foodList, setFoodList] = useState([
         {
             _id: "101",
@@ -36,12 +35,10 @@ function FoodFeed() {
         }
     ]);
 
-    // Simulated Collect Function (Just for the Demo)
     const handleCollect = (id) => {
         const collectorName = prompt("Enter your name to collect this food:");
         if (!collectorName) return;
 
-        // Update the list locally to show the change immediately
         const updatedList = foodList.map(item => {
             if (item._id === id) {
                 return { ...item, status: "Collected", collector: collectorName };
@@ -69,17 +66,41 @@ function FoodFeed() {
                     >
                         <h3>{food.foodName}</h3>
                         
-                        {/* Expiry Display */}
                         <p style={{ color: '#cb202d', fontWeight: 'bold' }}>
                             🕒 Expires in: {food.expiry || "Not Specified"}
                         </p>
                         
                         <p><strong>Quantity:</strong> {food.quantity}</p>
+                        
+                        {/* --- NEW CLICKABLE LOCATION FEATURE --- */}
                         <p><strong>Location:</strong> 
-                            <span style={{ color: '#138808', fontWeight: 'bold', marginLeft: '5px' }}>
-                                📍 {food.location}
-                            </span>
+                            <a 
+                                href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(food.location)}`}
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                                style={{ 
+                                    color: '#138808', 
+                                    fontWeight: 'bold', 
+                                    marginLeft: '5px',
+                                    textDecoration: 'none',
+                                    cursor: 'pointer',
+                                    borderBottom: '1px dashed #138808',
+                                    transition: 'background 0.3s'
+                                }}
+                                title="View on Google Maps"
+                                onMouseOver={(e) => {
+                                    e.target.style.backgroundColor = '#e8f5e9';
+                                    e.target.style.borderBottom = '1px solid #138808';
+                                }}
+                                onMouseOut={(e) => {
+                                    e.target.style.backgroundColor = 'transparent';
+                                    e.target.style.borderBottom = '1px dashed #138808';
+                                }}
+                            >
+                                📍 {food.location} ↗
+                            </a>
                         </p>
+                        {/* -------------------------------------- */}
 
                         <p style={{ color: '#000080', fontSize: '15px' }}>
                             <strong>👤 Donor:</strong> {food.donorName}
