@@ -1,60 +1,95 @@
-/* App.css - FINAL COLOR UPDATE */
+/* App.css - FINAL PROFESSIONAL VERSION */
 
 /* 1. IMPORT MODERN FONT */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
 
-/* 2. GLOBAL RESET & BASICS */
+/* App.css - PROFESSIONAL BACKGROUND UPDATE */
+
+/* 1. RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* 2. BACKGROUND & FONT - OPTION 1 (Tricolor Harmony) */
 body {
   font-family: 'Poppins', sans-serif;
-  background: 92e0ff; /* Light Orange to White */
-  margin: 0;
+  
+  /* --- THE PROFESSIONAL GRADIENT --- */
+  /* This creates a very soft flow from light orange to white to light green */
+  background: #ADD8E6;
+  background-attachment: fixed; /* Keeps gradient locked when scrolling */
+  
   height: 100vh;
   overflow: hidden;
   color: #333;
+  width: 100%;
 }
 
 /* 3. HEADER */
 .navbar {
-  background: #e5eaf5;
-  padding: 15px 20px;
-  text-align: center;
+  /* --- GLASS & FLOATING EFFECT --- */
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  
+  /* --- BORDER & SHADOW --- */
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 24px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+   
+
+  /* --- POSITIONING (WIDE STRETCH) --- */
+  width: 96%; /* Stretches to 96% of the screen (touching your red lines) */
+  max-width: 1600px; /* Allowed to grow very wide on big screens */
+  margin: 15px auto; /* Centers the box */
+  
+  /* --- VERTICAL LAYOUT --- */
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-direction: column; /* Stacks items Top to Bottom */
+  align-items: center;    
   justify-content: center;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-  border-bottom: 3px solid #FF9933;
-  min-height: 160px;
-  gap: 12px;
+  padding: 15px;
+  gap: 5px; 
 }
 
+/* Logo Style (First Line) */
 .header-logo {
-  width: 90px;
+  width: 80px; /* Slightly larger for center stage */
   height: auto;
-  border-radius: 8px;
-  box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+  border-radius: 6px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
   background-color: white;
-  padding: 3px;
-  transition: transform 0.3s ease;
+  padding: 2px;
+  border: 1px solid #eee;
+  margin-bottom: 5px;
 }
-.header-logo:hover { transform: scale(1.05) rotate(-2deg); }
 
+/* Text Container */
+.header-text {
+  text-align: center; /* Ensure text is centered */
+}
+
+/* Title (Second Line) */
 .header-text h1 {
   margin: 0;
-  font-size: 1.8rem;
-  font-weight: 700;
+  font-size: 2rem;
+  font-weight: 800;
   background: linear-gradient(90deg, #FF9933, #138808);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  letter-spacing: -0.5px;
+  line-height: 1.3;
 }
 
+/* Tagline (Third Line) */
 .header-text p {
-  margin: 2px 0 0 0;
-  font-size: 13px;
+  margin: 0;
+  font-size: 14px;
   font-weight: 600;
   color: #555;
-  letter-spacing: 1px;
+  letter-spacing: 2px; /* Spaced out letters for style */
+  text-transform: uppercase;
 }
 
 /* 4. MAIN LAYOUT */
@@ -93,7 +128,7 @@ body {
 }
 .donate-cta-card::before {
   content: ''; position: absolute; top: 0; left: 0; right: 0;
-  height: 6px; background: linear-gradient(90deg, #138808, #8bc34a);
+  height: 6px; 
 }
 .donate-cta-card:hover { transform: translateY(-5px); }
 
@@ -174,35 +209,88 @@ body {
 .food-card h3 { margin: 0 0 8px 0; color: #2c3e50; font-weight: 700; font-size: 1.1rem; }
 .food-card p { margin: 6px 0; color: #666; font-size: 13px; line-height: 1.5; }
 
-/* INPUTS & BUTTONS */
+.feed-container::-webkit-scrollbar { width: 6px; }
+.feed-container::-webkit-scrollbar-thumb { background-color: #ddd; border-radius: 10px; }
+
+/* --- UPDATED INPUTS & BUTTONS (Interactive Hover) --- */
 input, select {
-  width: 100%; padding: 12px 15px; margin: 10px 0;
-  border: 2px solid #eee; border-radius: 12px;
-  background-color: #fafafa; font-size: 14px;
-  font-family: 'Poppins', sans-serif; transition: border-color 0.3s ease;
+  width: 100%;
+  padding: 12px 15px;
+  margin: 10px 0;
+  border: 2px solid #eee;
+  border-radius: 12px;
+  background-color: #fafafa;
+  font-size: 14px;
+  font-family: 'Poppins', sans-serif;
+  transition: all 0.3s ease; /* Smooth animation */
   box-sizing: border-box;
 }
-input:focus, select:focus {
-  border-color: #138808; background-color: white; outline: none;
-  box-shadow: 0 0 0 4px rgba(19, 136, 8, 0.1);
+
+/* 1. Make Dropdowns Look Clickable (Hand Cursor + Custom Arrow) */
+select {
+  cursor: pointer; /* Force Hand Cursor */
+  appearance: none; /* Remove ugly default OS arrow */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  /* Add Custom Green Arrow */
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23138808%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+  background-repeat: no-repeat;
+  background-position: right 15px top 50%;
+  background-size: 12px auto;
+  padding-right: 30px; /* Space for the arrow */
 }
 
+/* 2. HOVER STATE (Turn Orange when mouse is over) */
+input:hover, select:hover {
+  border-color: #FF9933; /* Orange Border */
+  background-color: #fff;
+  transform: translateY(-1px); /* Slight lift effect */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+}
+
+/* 3. FOCUS STATE (When clicking/typing - Green) */
+input:focus, select:focus {
+  border-color: #138808;
+  background-color: white;
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(19, 136, 8, 0.1); /* Green Glow */
+}
+
+/* 4. DISABLED STATE (For City dropdown before State is chosen) */
+select:disabled {
+  background-color: #e9ecef;
+  cursor: not-allowed;
+  opacity: 0.6;
+  border-color: #ddd;
+  background-image: none; /* Hide arrow on disabled */
+}
+
+/* Button Styling */
 button[type="submit"] {
-  width: 100%; padding: 14px;
+  width: 100%;
+  padding: 14px;
   background: linear-gradient(45deg, #138808, #0e6b05);
-  color: white; border: none; border-radius: 12px;
-  cursor: pointer; font-weight: 600; font-size: 15px;
-  margin-top: 15px; transition: transform 0.2s;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 15px;
+  margin-top: 15px;
+  transition: transform 0.2s;
 }
 button[type="submit"]:hover { transform: scale(1.02); }
 
 .collect-btn {
-  width: 100%; padding: 12px;
+  width: 100%;
+  padding: 12px;
   background: linear-gradient(to right, #FF9933, #FF7722);
-  color: white; border: none; border-radius: 10px;
-  cursor: pointer; font-weight: 600; margin-top: 10px;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  margin-top: 10px;
   box-shadow: 0 4px 10px rgba(255, 153, 51, 0.2);
 }
 
-.feed-container::-webkit-scrollbar { width: 6px; }
-.feed-container::-webkit-scrollbar-thumb { background-color: #ddd; border-radius: 10px; }
